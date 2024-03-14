@@ -1,54 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TarracoLuxe</title>
-    <link rel="stylesheet" href="build/css/app.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="contenedor contenido-header">
-        <div class="barra">
-          <a href="/">
-            <img src="build/img/logo.svg" alt="Logotipo de TarracoLuxe" />
-          </a>
-          <div class="mobile-menu">
-            <img src="build/img/barras.svg" alt="Icono menú responsive" />
-          </div>
-          <div class="derecha">
-            <img
-              src="build/img/dark-mode.svg"
-              alt="Icono dark mode"
-              class="dark-mode-boton"
-            />
-            <nav class="navegacion">
-              <a href="nosotros.html">Nosotros</a>
-              <a href="anuncios.html">Anuncios</a>
-              <a href="blog.html">Blog</a>
-              <a href="contacto.html">Contacto</a>
-            </nav>
-          </div>
-        </div>
-        <h1>Venta de casas y pisos exclusivos de lujo</h1>
-      </div>
-    </header>
-    <main class="contenedor seccion">
-      <h1>Página base</h1>
-    </main>
-    <footer class="footer seccion">
-      <div class="contenedor contenedor-footer">
-        <nav class="navegacion">
-          <a href="nosotros.html">Nosotros</a>
-          <a href="anuncios.html">Anuncios</a>
-          <a href="blog.html">Blog</a>
-          <a href="contacto.html">Contacto</a>
-        </nav>
-      </div>
-      <p class="copyright">
-        Todos los Derechos Reservados 2024 &copy; TarracoLuxe
-      </p>
-    </footer>
-    <script src="build/js/bundle.min.js"></script>
-  </body>
+<?php
+$inicio = false;
+include './includes/templates/header.php';
+?>
+<main class="contenedor seccion">
+  <h1>Página base</h1>
+</main>
+<footer class="footer seccion">
+  <div class="contenedor contenedor-footer">
+    <nav class="navegacion">
+      <a href="nosotros.html">Nosotros</a>
+      <a href="anuncios.html">Anuncios</a>
+      <a href="blog.html">Blog</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+  <p class="copyright">
+    Todos los Derechos Reservados 2024 &copy; TarracoLuxe
+  </p>
+</footer>
+<script src="build/js/bundle.min.js"></script>
+</body>
+
 </html>

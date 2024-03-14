@@ -1,336 +1,205 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TarracoLuxe</title>
-    <link rel="stylesheet" href="build/css/app.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="contenedor contenido-header">
-        <div class="barra">
-          <a href="/">
-            <img src="build/img/logo.svg" alt="Logotipo de TarracoLuxe" />
-          </a>
-          <div class="mobile-menu">
-            <img src="build/img/barras.svg" alt="Icono menú responsive" />
-          </div>
-          <div class="derecha">
-            <img
-              src="build/img/dark-mode.svg"
-              alt="Icono dark mode"
-              class="dark-mode-boton"
-            />
-            <nav class="navegacion">
-              <a href="nosotros.html">Nosotros</a>
-              <a href="anuncios.html">Anuncios</a>
-              <a href="blog.html">Blog</a>
-              <a href="contacto.html">Contacto</a>
-            </nav>
-          </div>
-        </div>
+<?php
+$inicio = false;
+include './includes/templates/header.php';
+?>
+<main class="contenedor seccion">
+  <div class="contenedor-anuncios">
+    <div class="anuncio">
+      <picture>
+        <source srcset="build/img/anuncio1.webp" type="image/webp" />
+        <source srcset="build/img/anuncio1.jpg" type="image/jpeg" />
+        <img src="build/img/anuncio1.jpg" alt="Anuncio 1" loading="lazy" />
+      </picture>
+      <div class="contenido-anuncio">
+        <h3>Casa de lujo en el lago</h3>
+        <p>
+          Casa en el lago con excelente vista, acabados de lujo a un
+          excelente precio
+        </p>
+        <p class="precio">1.500.000 €</p>
+        <ul class="iconos-caracteristicas">
+          <li>
+            <img src="build/img/icono_dormitorio.svg" alt="Icono dormitorio" loading="lazy" class="icono" />
+            <p>4</p>
+          </li>
+          <li>
+            <img src="build/img/icono_aparcamiento.svg" alt="Icono aparcamiento" loading="lazy" class="icono" />
+            <p>2</p>
+          </li>
+          <li>
+            <img src="build/img/icono_wc.svg" alt="Icono WC" loading="lazy" class="icono" />
+            <p>3</p>
+          </li>
+        </ul>
+        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
       </div>
-    </header>
-    <main class="contenedor seccion">
-      <div class="contenedor-anuncios">
-        <div class="anuncio">
-          <picture>
-            <source srcset="build/img/anuncio1.webp" type="image/webp" />
-            <source srcset="build/img/anuncio1.jpg" type="image/jpeg" />
-            <img src="build/img/anuncio1.jpg" alt="Anuncio 1" loading="lazy" />
-          </picture>
-          <div class="contenido-anuncio">
-            <h3>Casa de lujo en el lago</h3>
-            <p>
-              Casa en el lago con excelente vista, acabados de lujo a un
-              excelente precio
-            </p>
-            <p class="precio">1.500.000 €</p>
-            <ul class="iconos-caracteristicas">
-              <li>
-                <img
-                  src="build/img/icono_dormitorio.svg"
-                  alt="Icono dormitorio"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>4</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_aparcamiento.svg"
-                  alt="Icono aparcamiento"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>2</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_wc.svg"
-                  alt="Icono WC"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>3</p>
-              </li>
-            </ul>
-            <a href="anuncio.html" class="boton-amarillo-block"
-              >Ver propiedad</a
-            >
-          </div>
-        </div>
-        <div class="anuncio">
-          <picture>
-            <source srcset="build/img/anuncio2.webp" type="image/webp" />
-            <source srcset="build/img/anuncio2.jpg" type="image/jpeg" />
-            <img src="build/img/anuncio2.jpg" alt="Anuncio 2" loading="lazy" />
-          </picture>
-          <div class="contenido-anuncio">
-            <h3>Casa terminados de lujo</h3>
-            <p>
-              Casa con diseño moderno, así como tecnología inteligente y
-              amueblada
-            </p>
-            <p class="precio">2.000.000 €</p>
-            <ul class="iconos-caracteristicas">
-              <li>
-                <img
-                  src="build/img/icono_dormitorio.svg"
-                  alt="Icono dormitorio"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>4</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_aparcamiento.svg"
-                  alt="Icono aparcamiento"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>2</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_wc.svg"
-                  alt="Icono WC"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>3</p>
-              </li>
-            </ul>
-            <a href="anuncio.html" class="boton-amarillo-block"
-              >Ver propiedad</a
-            >
-          </div>
-        </div>
-        <div class="anuncio">
-          <picture>
-            <source srcset="build/img/anuncio3.webp" type="image/webp" />
-            <source srcset="build/img/anuncio3.jpg" type="image/jpeg" />
-            <img src="build/img/anuncio3.jpg" alt="Anuncio 3" loading="lazy" />
-          </picture>
-          <div class="contenido-anuncio">
-            <h3>Casa de con piscina</h3>
-            <p>
-              Casa con piscina y acabados de lujo en la ciudad, excelente
-              oportunidad
-            </p>
-            <p class="precio">3.000.000 €</p>
-            <ul class="iconos-caracteristicas">
-              <li>
-                <img
-                  src="build/img/icono_dormitorio.svg"
-                  alt="Icono dormitorio"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>4</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_aparcamiento.svg"
-                  alt="Icono aparcamiento"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>2</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_wc.svg"
-                  alt="Icono WC"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>3</p>
-              </li>
-            </ul>
-            <a href="anuncio.html" class="boton-amarillo-block"
-              >Ver propiedad</a
-            >
-          </div>
-        </div>
-        <div class="anuncio">
-          <picture>
-            <source srcset="build/img/anuncio4.webp" type="image/webp" />
-            <source srcset="build/img/anuncio4.jpg" type="image/jpeg" />
-            <img src="build/img/anuncio4.jpg" alt="Anuncio 4" loading="lazy" />
-          </picture>
-          <div class="contenido-anuncio">
-            <h3>Casa de lujo en el lago</h3>
-            <p>
-              Casa en el lago con excelente vista, acabados de lujo a un
-              excelente precio
-            </p>
-            <p class="precio">1.500.000 €</p>
-            <ul class="iconos-caracteristicas">
-              <li>
-                <img
-                  src="build/img/icono_dormitorio.svg"
-                  alt="Icono dormitorio"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>4</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_aparcamiento.svg"
-                  alt="Icono aparcamiento"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>2</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_wc.svg"
-                  alt="Icono WC"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>3</p>
-              </li>
-            </ul>
-            <a href="anuncio.html" class="boton-amarillo-block"
-              >Ver propiedad</a
-            >
-          </div>
-        </div>
-        <div class="anuncio">
-          <picture>
-            <source srcset="build/img/anuncio5.webp" type="image/webp" />
-            <source srcset="build/img/anuncio5.jpg" type="image/jpeg" />
-            <img src="build/img/anuncio5.jpg" alt="Anuncio 5" loading="lazy" />
-          </picture>
-          <div class="contenido-anuncio">
-            <h3>Casa terminados de lujo</h3>
-            <p>
-              Casa con diseño moderno, así como tecnología inteligente y
-              amueblada
-            </p>
-            <p class="precio">2.000.000 €</p>
-            <ul class="iconos-caracteristicas">
-              <li>
-                <img
-                  src="build/img/icono_dormitorio.svg"
-                  alt="Icono dormitorio"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>4</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_aparcamiento.svg"
-                  alt="Icono aparcamiento"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>2</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_wc.svg"
-                  alt="Icono WC"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>3</p>
-              </li>
-            </ul>
-            <a href="anuncio.html" class="boton-amarillo-block"
-              >Ver propiedad</a
-            >
-          </div>
-        </div>
-        <div class="anuncio">
-          <picture>
-            <source srcset="build/img/anuncio6.webp" type="image/webp" />
-            <source srcset="build/img/anuncio6.jpg" type="image/jpeg" />
-            <img src="build/img/anuncio6.jpg" alt="Anuncio 6" loading="lazy" />
-          </picture>
-          <div class="contenido-anuncio">
-            <h3>Casa de con piscina</h3>
-            <p>
-              Casa con piscina y acabados de lujo en la ciudad, excelente
-              oportunidad
-            </p>
-            <p class="precio">3.000.000 €</p>
-            <ul class="iconos-caracteristicas">
-              <li>
-                <img
-                  src="build/img/icono_dormitorio.svg"
-                  alt="Icono dormitorio"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>4</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_aparcamiento.svg"
-                  alt="Icono aparcamiento"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>2</p>
-              </li>
-              <li>
-                <img
-                  src="build/img/icono_wc.svg"
-                  alt="Icono WC"
-                  loading="lazy"
-                  class="icono"
-                />
-                <p>3</p>
-              </li>
-            </ul>
-            <a href="anuncio.html" class="boton-amarillo-block"
-              >Ver propiedad</a
-            >
-          </div>
-        </div>
+    </div>
+    <div class="anuncio">
+      <picture>
+        <source srcset="build/img/anuncio2.webp" type="image/webp" />
+        <source srcset="build/img/anuncio2.jpg" type="image/jpeg" />
+        <img src="build/img/anuncio2.jpg" alt="Anuncio 2" loading="lazy" />
+      </picture>
+      <div class="contenido-anuncio">
+        <h3>Casa terminados de lujo</h3>
+        <p>
+          Casa con diseño moderno, así como tecnología inteligente y
+          amueblada
+        </p>
+        <p class="precio">2.000.000 €</p>
+        <ul class="iconos-caracteristicas">
+          <li>
+            <img src="build/img/icono_dormitorio.svg" alt="Icono dormitorio" loading="lazy" class="icono" />
+            <p>4</p>
+          </li>
+          <li>
+            <img src="build/img/icono_aparcamiento.svg" alt="Icono aparcamiento" loading="lazy" class="icono" />
+            <p>2</p>
+          </li>
+          <li>
+            <img src="build/img/icono_wc.svg" alt="Icono WC" loading="lazy" class="icono" />
+            <p>3</p>
+          </li>
+        </ul>
+        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
       </div>
-    </main>
-    <footer class="footer seccion">
-      <div class="contenedor contenedor-footer">
-        <nav class="navegacion">
-          <a href="nosotros.html">Nosotros</a>
-          <a href="anuncios.html">Anuncios</a>
-          <a href="blog.html">Blog</a>
-          <a href="contacto.html">Contacto</a>
-        </nav>
+    </div>
+    <div class="anuncio">
+      <picture>
+        <source srcset="build/img/anuncio3.webp" type="image/webp" />
+        <source srcset="build/img/anuncio3.jpg" type="image/jpeg" />
+        <img src="build/img/anuncio3.jpg" alt="Anuncio 3" loading="lazy" />
+      </picture>
+      <div class="contenido-anuncio">
+        <h3>Casa de con piscina</h3>
+        <p>
+          Casa con piscina y acabados de lujo en la ciudad, excelente
+          oportunidad
+        </p>
+        <p class="precio">3.000.000 €</p>
+        <ul class="iconos-caracteristicas">
+          <li>
+            <img src="build/img/icono_dormitorio.svg" alt="Icono dormitorio" loading="lazy" class="icono" />
+            <p>4</p>
+          </li>
+          <li>
+            <img src="build/img/icono_aparcamiento.svg" alt="Icono aparcamiento" loading="lazy" class="icono" />
+            <p>2</p>
+          </li>
+          <li>
+            <img src="build/img/icono_wc.svg" alt="Icono WC" loading="lazy" class="icono" />
+            <p>3</p>
+          </li>
+        </ul>
+        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
       </div>
-      <p class="copyright">
-        Todos los Derechos Reservados 2024 &copy; TarracoLuxe
-      </p>
-    </footer>
-    <script src="build/js/bundle.min.js"></script>
-  </body>
+    </div>
+    <div class="anuncio">
+      <picture>
+        <source srcset="build/img/anuncio4.webp" type="image/webp" />
+        <source srcset="build/img/anuncio4.jpg" type="image/jpeg" />
+        <img src="build/img/anuncio4.jpg" alt="Anuncio 4" loading="lazy" />
+      </picture>
+      <div class="contenido-anuncio">
+        <h3>Casa de lujo en el lago</h3>
+        <p>
+          Casa en el lago con excelente vista, acabados de lujo a un
+          excelente precio
+        </p>
+        <p class="precio">1.500.000 €</p>
+        <ul class="iconos-caracteristicas">
+          <li>
+            <img src="build/img/icono_dormitorio.svg" alt="Icono dormitorio" loading="lazy" class="icono" />
+            <p>4</p>
+          </li>
+          <li>
+            <img src="build/img/icono_aparcamiento.svg" alt="Icono aparcamiento" loading="lazy" class="icono" />
+            <p>2</p>
+          </li>
+          <li>
+            <img src="build/img/icono_wc.svg" alt="Icono WC" loading="lazy" class="icono" />
+            <p>3</p>
+          </li>
+        </ul>
+        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+      </div>
+    </div>
+    <div class="anuncio">
+      <picture>
+        <source srcset="build/img/anuncio5.webp" type="image/webp" />
+        <source srcset="build/img/anuncio5.jpg" type="image/jpeg" />
+        <img src="build/img/anuncio5.jpg" alt="Anuncio 5" loading="lazy" />
+      </picture>
+      <div class="contenido-anuncio">
+        <h3>Casa terminados de lujo</h3>
+        <p>
+          Casa con diseño moderno, así como tecnología inteligente y
+          amueblada
+        </p>
+        <p class="precio">2.000.000 €</p>
+        <ul class="iconos-caracteristicas">
+          <li>
+            <img src="build/img/icono_dormitorio.svg" alt="Icono dormitorio" loading="lazy" class="icono" />
+            <p>4</p>
+          </li>
+          <li>
+            <img src="build/img/icono_aparcamiento.svg" alt="Icono aparcamiento" loading="lazy" class="icono" />
+            <p>2</p>
+          </li>
+          <li>
+            <img src="build/img/icono_wc.svg" alt="Icono WC" loading="lazy" class="icono" />
+            <p>3</p>
+          </li>
+        </ul>
+        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+      </div>
+    </div>
+    <div class="anuncio">
+      <picture>
+        <source srcset="build/img/anuncio6.webp" type="image/webp" />
+        <source srcset="build/img/anuncio6.jpg" type="image/jpeg" />
+        <img src="build/img/anuncio6.jpg" alt="Anuncio 6" loading="lazy" />
+      </picture>
+      <div class="contenido-anuncio">
+        <h3>Casa de con piscina</h3>
+        <p>
+          Casa con piscina y acabados de lujo en la ciudad, excelente
+          oportunidad
+        </p>
+        <p class="precio">3.000.000 €</p>
+        <ul class="iconos-caracteristicas">
+          <li>
+            <img src="build/img/icono_dormitorio.svg" alt="Icono dormitorio" loading="lazy" class="icono" />
+            <p>4</p>
+          </li>
+          <li>
+            <img src="build/img/icono_aparcamiento.svg" alt="Icono aparcamiento" loading="lazy" class="icono" />
+            <p>2</p>
+          </li>
+          <li>
+            <img src="build/img/icono_wc.svg" alt="Icono WC" loading="lazy" class="icono" />
+            <p>3</p>
+          </li>
+        </ul>
+        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer seccion">
+  <div class="contenedor contenedor-footer">
+    <nav class="navegacion">
+      <a href="nosotros.html">Nosotros</a>
+      <a href="anuncios.html">Anuncios</a>
+      <a href="blog.html">Blog</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+  <p class="copyright">
+    Todos los Derechos Reservados 2024 &copy; TarracoLuxe
+  </p>
+</footer>
+<script src="build/js/bundle.min.js"></script>
+</body>
+
 </html>
