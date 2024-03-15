@@ -20,15 +20,19 @@ $vendedorId = '';
 
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titulo = $_POST['titulo'];
-    $precio = $_POST['precio'];
-    $imagen = $_POST['imagen'];
-    $descripcion = $_POST['descripcion'];
-    $habitaciones = $_POST['habitaciones'];
-    $wc = $_POST['wc'];
-    $plazas = $_POST['plazas'];
+    // Sanitizar con mysqli_real_escape_string
+    $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
+    $precio = mysqli_real_escape_string($db, $_POST['precio']);
+    $imagen = mysqli_real_escape_string($db, $_POST['imagen']);
+    $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
+    $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
+    $wc = mysqli_real_escape_string($db, $_POST['wc']);
+    $plazas = mysqli_real_escape_string($db, $_POST['plazas']);
     $creado = date('Y/m/d');
-    $vendedorId = $_POST['vendedor'];
+    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
+
+    // Asignar files a una variable
+    $imagen = $_FILES['imagen'];
 
     if (!$titulo) {
         $errores[] = "Debes añadir un título";
@@ -36,6 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$precio) {
         $errores[] = "Debes añadir un precio";
+    }
+
+    if (!$imagen['name'] || $imagen['error']) {
+        $errores[] = "Debes añadir una imagen";
+    }
+
+    // Validar por tamaño (2mb máximo)
+    $medida = 1000 * 1000;
+
+    if ($imagen['size'] > $medida) {
+        $errores[] = "La imagen es demasiado grande";
     }
 
     if (strlen($descripcion) < 50) {
@@ -47,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$wc) {
-        $errores[] = "Debes añadir al menos un wc";
+        $errores[] = "Debes añadir al menos un baño";
     }
 
     if (!$plazas) {
@@ -60,14 +75,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Revisar que el array de errores esté vacío
     if (empty($errores)) {
-        // Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, plazas, creado, vendedorId) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$plazas', '$creado', '$vendedorId')";
+        /* Subida de archivos */
+        // Crear carpeta
+        $carpetaImagenes = '../../imagenes/';
 
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        // Generar nombre único para la imagen
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+        // Subir la imagen
+        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+
+        // Insertar en la base de datos
+        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, plazas, creado, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$plazas', '$creado', '$vendedorId')";
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
             // Redireccionar al usuario
-            header('Location: /TarracoLuxe/admin');
+            header('Location: /TarracoLuxe/admin?resultado=1');
         }
     }
 }
@@ -82,7 +110,7 @@ incluirTemplate('header');
             <?php echo $error; ?>
         </div>
     <?php endforeach ?>
-    <form action="/TarracoLuxe/admin/propiedades/crear.php" method="post" class="formulario">
+    <form action="/TarracoLuxe/admin/propiedades/crear.php" method="post" class="formulario" enctype="multipart/form-data">
         <fieldset>
             <legend>Información general</legend>
             <label for="titulo">Título:</label>
