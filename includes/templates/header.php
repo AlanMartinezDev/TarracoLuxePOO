@@ -13,13 +13,13 @@
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="/TarracoLuxe/index.php">
-                    <img src="build/img/logo.svg" alt="Logotipo de TarracoLuxe" />
+                    <img src="/TarracoLuxe/build/img/logo.svg" alt="Logotipo de TarracoLuxe" />
                 </a>
                 <div class="mobile-menu">
-                    <img src="build/img/barras.svg" alt="Icono menú responsive" />
+                    <img src="/TarracoLuxe/build/img/barras.svg" alt="Icono menú responsive" />
                 </div>
                 <div class="derecha">
-                    <img src="build/img/dark-mode.svg" alt="Icono dark mode" class="dark-mode-boton" />
+                    <img src="/TarracoLuxe/build/img/dark-mode.svg" alt="Icono dark mode" class="dark-mode-boton" />
                     <nav class="navegacion">
                         <a href="nosotros.php">Nosotros</a>
                         <a href="anuncios.php">Anuncios</a>

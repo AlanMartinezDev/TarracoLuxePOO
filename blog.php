@@ -13,7 +13,7 @@ incluirTemplate('header');
       </picture>
     </div>
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Terraza en el techo de tu casa</h4>
         <p class="informacion-meta">
           Escrito el: <span>13/03/2024</span> por:
@@ -35,7 +35,7 @@ incluirTemplate('header');
       </picture>
     </div>
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Guía para la decoración de tu hogar</h4>
         <p class="informacion-meta">
           Escrito el: <span>13/03/2024</span> por:
@@ -57,7 +57,7 @@ incluirTemplate('header');
       </picture>
     </div>
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Terraza en el techo de tu casa</h4>
         <p class="informacion-meta">
           Escrito el: <span>13/03/2024</span> por:
@@ -79,7 +79,7 @@ incluirTemplate('header');
       </picture>
     </div>
     <div class="texto-entrada">
-      <a href="entrada.html">
+      <a href="entrada.php">
         <h4>Guía para la decoración de tu hogar</h4>
         <p class="informacion-meta">
           Escrito el: <span>13/03/2024</span> por:

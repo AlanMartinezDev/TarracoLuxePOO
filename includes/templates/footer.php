@@ -11,7 +11,7 @@
         Todos los Derechos Reservados <?php echo date('Y'); ?> &copy; TarracoLuxe
     </p>
 </footer>
-<script src="build/js/bundle.min.js"></script>
+<script src="/TarracoLuxe/build/js/bundle.min.js"></script>
 </body>
 
 </html>

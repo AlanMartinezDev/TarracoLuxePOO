@@ -67,7 +67,7 @@ incluirTemplate('header', true);
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncios.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -97,7 +97,7 @@ incluirTemplate('header', true);
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncios.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -127,12 +127,12 @@ incluirTemplate('header', true);
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncios.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
   </div>
   <div class="alinear-derecha">
-    <a href="anuncios.html" class="boton-verde">Ver todas</a>
+    <a href="anuncios.php" class="boton-verde">Ver todas</a>
   </div>
 </section>
 <section class="imagen-contacto">
@@ -141,7 +141,7 @@ incluirTemplate('header', true);
     Llena el formulario de contacto y un asesor se pondrá en contacto
     contigo lo antes posible
   </p>
-  <a href="contacto.html" class="boton-amarillo">Contáctanos</a>
+  <a href="contacto.php" class="boton-amarillo">Contáctanos</a>
 </section>
 <div class="contenedor seccion seccion-inferior">
   <section class="blog">
@@ -155,7 +155,7 @@ incluirTemplate('header', true);
         </picture>
       </div>
       <div class="texto-entrada">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Terraza en el techo de tu casa</h4>
           <p class="informacion-meta">
             Escrito el: <span>13/03/2024</span> por:
@@ -177,7 +177,7 @@ incluirTemplate('header', true);
         </picture>
       </div>
       <div class="texto-entrada">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Guía para la decoración de tu hogar</h4>
           <p class="informacion-meta">
             Escrito el: <span>13/03/2024</span> por:
