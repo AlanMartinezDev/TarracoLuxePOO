@@ -2,6 +2,10 @@
 require '../../includes/config/database.php';
 $db = conectarDB();
 
+// Consultar para obtener los vendedores
+$consulta = "SELECT * FROM vendedores";
+$resultado = mysqli_query($db, $consulta);
+
 // Array con mensajes de errores
 $errores = [];
 
@@ -23,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $habitaciones = $_POST['habitaciones'];
     $wc = $_POST['wc'];
     $plazas = $_POST['plazas'];
+    $creado = date('Y/m/d');
     $vendedorId = $_POST['vendedor'];
 
     if (!$titulo) {
@@ -56,12 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Revisar que el array de errores esté vacío
     if (empty($errores)) {
         // Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, plazas, vendedorId) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$plazas', '$vendedorId')";
+        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, plazas, creado, vendedorId) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$plazas', '$creado', '$vendedorId')";
 
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
-            echo "Insertado correctamente";
+            // Redireccionar al usuario
+            header('Location: /TarracoLuxe/admin');
         }
     }
 }
@@ -71,11 +77,11 @@ incluirTemplate('header');
 ?>
 <main class="contenedor seccion">
     <h1>Crear propiedad</h1>
-    <?php foreach ($errores as $error) { ?>
+    <?php foreach ($errores as $error) : ?>
         <div class="alerta error">
             <?php echo $error; ?>
         </div>
-    <?php } ?>
+    <?php endforeach ?>
     <form action="/TarracoLuxe/admin/propiedades/crear.php" method="post" class="formulario">
         <fieldset>
             <legend>Información general</legend>
@@ -101,8 +107,9 @@ incluirTemplate('header');
             <legend>Vendedor</legend>
             <select name="vendedor">
                 <option disabled selected>-- Selecciona un vendedor --</option>
-                <option value="1">Alan</option>
-                <option value="2">Alexandra</option>
+                <?php while ($vendedor = mysqli_fetch_assoc($resultado)) : ?>
+                    <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>
+                <?php endwhile ?>
             </select>
         </fieldset>
         <input type="submit" value="Crear propiedad" class="boton boton-verde">
