@@ -1,6 +1,6 @@
 <?php
-$inicio = false;
-include './includes/templates/header.php';
+require 'includes/funciones.php';
+incluirTemplate('header');
 ?>
 <main class="contenedor seccion">
   <div class="contenedor-anuncios">
@@ -31,7 +31,7 @@ include './includes/templates/header.php';
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -61,7 +61,7 @@ include './includes/templates/header.php';
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -91,7 +91,7 @@ include './includes/templates/header.php';
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -121,7 +121,7 @@ include './includes/templates/header.php';
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -151,7 +151,7 @@ include './includes/templates/header.php';
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
     <div class="anuncio">
@@ -181,11 +181,11 @@ include './includes/templates/header.php';
             <p>3</p>
           </li>
         </ul>
-        <a href="anuncio.html" class="boton-amarillo-block">Ver propiedad</a>
+        <a href="anuncio.php" class="boton-amarillo-block">Ver propiedad</a>
       </div>
     </div>
   </div>
 </main>
 <?php
-include './includes/templates/footer.php';
+incluirTemplate('footer');
 ?>
