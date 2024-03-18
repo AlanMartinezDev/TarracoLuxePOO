@@ -12,6 +12,7 @@
 
   &.exito {
     background-color: $verde;
+    color: $blanco;
   }
 }
 
@@ -32,4 +33,8 @@ table.propiedades {
   .imagen-tabla {
     width: 10rem;
   }
+}
+
+.imagen-small {
+  width: 20rem;
 }
