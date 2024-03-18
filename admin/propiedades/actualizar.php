@@ -15,10 +15,6 @@ $consulta = "SELECT * FROM propiedades WHERE id = {$id}";
 $resultado = mysqli_query($db, $consulta);
 $propiedad = mysqli_fetch_assoc($resultado);
 
-echo "<pre>";
-var_dump($propiedad);
-echo "<pre>";
-
 // Consultar para obtener los vendedores
 $consulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $consulta);
@@ -26,14 +22,14 @@ $resultado = mysqli_query($db, $consulta);
 // Array con mensajes de errores
 $errores = [];
 
-$titulo = '';
-$precio = '';
-$imagen = '';
-$descripcion = '';
-$habitaciones = '';
-$wc = '';
-$plazas = '';
-$vendedorId = '';
+$titulo = $propiedad['titulo'];
+$precio = $propiedad['precio'];
+$descripcion = $propiedad['descripcion'];
+$habitaciones = $propiedad['habitaciones'];
+$wc = $propiedad['wc'];
+$plazas = $propiedad['plazas'];
+$vendedorId = $propiedad['vendedorId'];
+$imagenPropiedad = $propiedad['imagen'];
 
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,10 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$precio) {
         $errores[] = "Debes añadir un precio";
-    }
-
-    if (!$imagen['name'] || $imagen['error']) {
-        $errores[] = "Debes añadir una imagen";
     }
 
     // Validar por tamaño (2mb máximo)
@@ -92,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Revisar que el array de errores esté vacío
     if (empty($errores)) {
-        /* Subida de archivos */
+        /* Subida de archivos
         // Crear carpeta
         $carpetaImagenes = '../../imagenes/';
 
@@ -105,14 +97,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Subir la imagen
         move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-
+*/
         // Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, plazas, creado, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$plazas', '$creado', '$vendedorId')";
+        $query = "UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, plazas = {$plazas}, vendedorId = {$vendedorId} WHERE id = {$id}";
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
             // Redireccionar al usuario
-            header('Location: /TarracoLuxe/admin?resultado=1');
+            header('Location: /TarracoLuxe/admin?resultado=2');
         }
     }
 }
@@ -127,7 +119,7 @@ incluirTemplate('header');
             <?php echo $error; ?>
         </div>
     <?php endforeach ?>
-    <form action="/TarracoLuxe/admin/propiedades/actualizar.php" method="post" class="formulario" enctype="multipart/form-data">
+    <form method="post" class="formulario" enctype="multipart/form-data">
         <fieldset>
             <legend>Información general</legend>
             <label for="titulo">Título:</label>
@@ -136,6 +128,7 @@ incluirTemplate('header');
             <input type="number" id="precio" name="precio" value="<?php echo $precio; ?>" placeholder="Precio de la propiedad">
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen" value="<?php echo $imagen; ?>" accept="image/jpeg, image/png">
+            <img src="/TarracoLuxe/imagenes/<?php echo $imagenPropiedad; ?>" alt="" class="imagen-small">
             <label for="descripcion">Descripción</label>
             <textarea id="descripcion" name="descripcion"><?php echo $descripcion; ?></textarea>
         </fieldset>
