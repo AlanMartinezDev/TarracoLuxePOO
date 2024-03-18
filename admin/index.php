@@ -21,6 +21,9 @@ incluirTemplate('header');
     <?php if (intval($resultado) === 1) : ?>
         <p class="alerta exito">Propiedad creada correctamente</p>
     <?php endif; ?>
+    <?php if (intval($resultado) === 2) : ?>
+        <p class="alerta exito">Propiedad actualizada correctamente</p>
+    <?php endif; ?>
     <a href="/TarracoLuxe/admin/propiedades/crear.php" class="boton boton-verde">Nueva propiedad</a>
     <table class="propiedades">
         <thead>
