@@ -1,3 +1,12 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+$auth = $_SESSION['login'] ?? false;
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,10 +30,16 @@
                 <div class="derecha">
                     <img src="/TarracoLuxe/build/img/dark-mode.svg" alt="Icono dark mode" class="dark-mode-boton" />
                     <nav class="navegacion">
-                        <a href="nosotros.php">Nosotros</a>
-                        <a href="anuncios.php">Anuncios</a>
-                        <a href="blog.php">Blog</a>
-                        <a href="contacto.php">Contacto</a>
+                        <a href="/TarracoLuxe/nosotros.php">Nosotros</a>
+                        <a href="/TarracoLuxe/anuncios.php">Anuncios</a>
+                        <a href="/TarracoLuxe/blog.php">Blog</a>
+                        <a href="/TarracoLuxe/contacto.php">Contacto</a>
+                        <?php if (!$auth) : ?>
+                            <a href="/TarracoLuxe/login.php">Iniciar sesión</a>
+                        <?php endif; ?>
+                        <?php if ($auth) : ?>
+                            <a href="/TarracoLuxe/logout.php">Cerrar sesión</a>
+                        <?php endif; ?>
                     </nav>
                 </div>
             </div>
