@@ -1,4 +1,7 @@
 <?php
+require '../../includes/funciones.php';
+estaAutenticado();
+
 require '../../includes/config/database.php';
 $db = conectarDB();
 
@@ -104,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../../includes/funciones.php';
 incluirTemplate('header');
 ?>
 <main class="contenedor seccion">
