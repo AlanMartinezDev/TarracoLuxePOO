@@ -51,6 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Debes añadir un título";
     }
 
+    if (strlen($titulo) > 45) {
+        $errores[] = "El título no debe superar los 45 caracteres";
+    }
+
     if (!$precio) {
         $errores[] = "Debes añadir un precio";
     }
