@@ -12,6 +12,28 @@ $resultadoConsulta = mysqli_query($db, $query);
 // Muestra mensaje condicional
 $resultado = $_GET['resultado'] ?? null;
 
+// Eliminar propiedad
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if ($id) {
+        // Eliminar la imagen
+        $query = "SELECT imagen FROM propiedades WHERE id = {$id}";
+        $resultado = mysqli_query($db, $query);
+        $propiedad = mysqli_fetch_assoc($resultado);
+        unlink('../imagenes/' . $propiedad['imagen']);
+
+        // Eliminar la propiedad
+        $query = "DELETE FROM propiedades WHERE id = {$id}";
+        $resultado = mysqli_query($db, $query);
+
+        if ($resultado) {
+            header('Location: /TarracoLuxe/admin?resultado=3');
+        }
+    }
+}
+
 // Incluye un template
 require '../includes/funciones.php';
 incluirTemplate('header');
@@ -23,6 +45,9 @@ incluirTemplate('header');
     <?php endif; ?>
     <?php if (intval($resultado) === 2) : ?>
         <p class="alerta exito">Propiedad actualizada correctamente</p>
+    <?php endif; ?>
+    <?php if (intval($resultado) === 3) : ?>
+        <p class="alerta exito">Propiedad eliminada correctamente</p>
     <?php endif; ?>
     <a href="/TarracoLuxe/admin/propiedades/crear.php" class="boton boton-verde">Nueva propiedad</a>
     <table class="propiedades">
@@ -44,7 +69,10 @@ incluirTemplate('header');
                     <td><?php echo $propiedad['precio']; ?> €</td>
                     <td>
                         <a href="propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
-                        <a href="propiedades/borrar.php?id=<?php echo $propiedad['id']; ?>" class="boton-rojo-block">Borrar</a>
+                        <form method="post" class="w-100">
+                            <input type="hidden" name="id" value="<?php echo $propiedad['id']; ?>">
+                            <input type="submit" value="Borrar" class="boton-rojo-block">
+                        </form>
                     </td>
                 </tr>
             <?php endwhile; ?>
