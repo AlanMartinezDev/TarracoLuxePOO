@@ -1,8 +1,14 @@
 <?php
-require '../../includes/funciones.php';
+require '../../includes/app.php';
+
+use App\Propiedad;
+
+$propiedad = new Propiedad;
+
+debug($propiedad);
+
 estaAutenticado();
 
-require '../../includes/config/database.php';
 $db = conectarDB();
 
 // Consultar para obtener los vendedores
