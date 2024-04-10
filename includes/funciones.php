@@ -18,3 +18,11 @@ function estaAutenticado(): bool
         header('Location: /TarracoLuxe/login.php');
     }
 }
+
+function debug($variable)
+{
+    echo "<pre>";
+    var_dump($variable);
+    echo "</pre>";
+    exit;
+}
