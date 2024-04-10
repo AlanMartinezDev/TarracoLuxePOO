@@ -7,7 +7,7 @@ if (!$id) {
 }
 
 // Importar la conexión
-require 'includes/config/database.php';
+require 'includes/app.php';
 $db = conectarDB();
 
 // Consultar
@@ -20,7 +20,6 @@ if (!$resultado->num_rows) {
 }
 $propiedad = mysqli_fetch_assoc($resultado);
 
-require 'includes/funciones.php';
 incluirTemplate('header');
 ?>
 <main class="contenedor seccion contenido-centrado">
