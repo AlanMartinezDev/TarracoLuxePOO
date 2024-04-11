@@ -7,14 +7,11 @@ function incluirTemplate(string $nombre, bool $inicio = false)
     include TEMPLATES_URL . "/{$nombre}.php";
 }
 
-function estaAutenticado(): bool
+function estaAutenticado()
 {
     session_start();
-    $auth = $_SESSION['login'];
 
-    if ($auth) {
-        return true;
-    } else {
+    if (!$_SESSION['login']) {
         header('Location: /TarracoLuxe/login.php');
     }
 }
