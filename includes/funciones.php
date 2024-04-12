@@ -24,3 +24,8 @@ function debug($variable)
     echo "</pre>";
     exit;
 }
+
+// Escapar / sanitizar el HTML
+function s()
+{
+}
