@@ -12,7 +12,7 @@ $consulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $consulta);
 
 // Array con mensajes de errores
-$errores = [];
+$errores = Propiedad::getErrores();
 
 $titulo = '';
 $precio = '';
@@ -26,56 +26,15 @@ $vendedorId = '';
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $propiedad = new Propiedad($_POST);
-    $propiedad->guardar();
-
-    // Asignar files a una variable
-    $imagen = $_FILES['imagen'];
-
-    if (!$titulo) {
-        $errores[] = "Debes añadir un título";
-    }
-
-    if (strlen($titulo) > 45) {
-        $errores[] = "El título no debe superar los 45 caracteres";
-    }
-
-    if (!$precio) {
-        $errores[] = "Debes añadir un precio";
-    }
-
-    if (!$imagen['name'] || $imagen['error']) {
-        $errores[] = "Debes añadir una imagen";
-    }
-
-    // Validar por tamaño (2mb máximo)
-    $medida = 1000 * 1000;
-
-    if ($imagen['size'] > $medida) {
-        $errores[] = "La imagen es demasiado grande";
-    }
-
-    if (strlen($descripcion) < 50) {
-        $errores[] = "Debes añadir una descripcion que tenga al menos 50 caracteres";
-    }
-
-    if (!$habitaciones) {
-        $errores[] = "Debes añadir al menos una habitación";
-    }
-
-    if (!$wc) {
-        $errores[] = "Debes añadir al menos un baño";
-    }
-
-    if (!$plazas) {
-        $errores[] = "Debes añadir al menos una plaza";
-    }
-
-    if (!$vendedorId) {
-        $errores[] = "Debes añadir un vendedor";
-    }
+    $errores = $propiedad->validar();
 
     // Revisar que el array de errores esté vacío
     if (empty($errores)) {
+        $propiedad->guardar();
+
+        // Asignar files a una variable
+        $imagen = $_FILES['imagen'];
+
         /* Subida de archivos */
         // Crear carpeta
         $carpetaImagenes = '../../imagenes/';
