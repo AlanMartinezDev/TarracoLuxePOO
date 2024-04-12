@@ -6,6 +6,7 @@ class Propiedad
 {
     // Base de datos
     protected static $db;
+    protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'plazas', 'creado', 'vendedorId'];
 
     public $id;
     public $titulo;
@@ -17,6 +18,12 @@ class Propiedad
     public $plazas;
     public $creado;
     public $vendedorId;
+
+    // Definir la conexión a la DB
+    public static function setDB($database)
+    {
+        self::$db = $database;
+    }
 
     public function __construct($args = [])
     {
@@ -34,17 +41,38 @@ class Propiedad
 
     public function guardar()
     {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributos();
+
         // Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, plazas, creado, vendedorId)
-        VALUES ('$this->titulo', '$this->precio', '$this->imagen', '$this->descripcion', '$this->habitaciones', '$this->wc', '$this->plazas', '$this->creado', '$this->vendedorId')";
+        $query = " INSERT INTO propiedades ( ";
+        $query .= join(", ", array_keys($atributos));
+        $query .= " ) VALUES (' ";
+        $query .= join("', '", array_values($atributos));
+        $query .= " ') ";
 
         $resultado = self::$db->query($query);
-        debug($resultado);
     }
 
-    // Definir la conexión a la DB
-    public static function setDB($database)
+    public function atributos()
     {
-        self::$db = $database;
+        $atributos = [];
+        foreach (self::$columnasDB as $columna) {
+            if ($columna === 'id') continue;
+            $atributos[$columna] = $this->$columna;
+        }
+        return $atributos;
+    }
+
+    public function sanitizarAtributos()
+    {
+        $atributos = $this->atributos();
+        $sanitizado = [];
+
+        foreach ($atributos as $atributo => $valor) {
+            $sanitizado[$atributo] = self::$db->escape_string($valor);
+        }
+
+        return $sanitizado;
     }
 }
