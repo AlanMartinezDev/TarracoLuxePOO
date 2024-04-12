@@ -1,21 +1,11 @@
 <?php
-session_start();
+require "../includes/app.php";
+estaAutenticado();
 
-$auth = $_SESSION['login'];
+use App\Propiedad;
 
-if (!$auth) {
-    header('Location: ../login.php');
-}
-
-// Importar la conexión
-require '../includes/config/database.php';
-$db = conectarDB();
-
-// Escribir el query
-$query = "SELECT * FROM propiedades";
-
-// Consultar la base de datos
-$resultadoConsulta = mysqli_query($db, $query);
+// Implementar un método para obtener todas las propiedades
+$propiedades = Propiedad::all();
 
 // Muestra mensaje condicional
 $resultado = $_GET['resultado'] ?? null;
@@ -43,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Incluye un template
-require '../includes/funciones.php';
 incluirTemplate('header');
 ?>
 <main class="contenedor seccion">
@@ -69,21 +58,21 @@ incluirTemplate('header');
             </tr>
         </thead>
         <tbody>
-            <?php while ($propiedad = mysqli_fetch_assoc($resultadoConsulta)) : ?>
+            <?php foreach ($propiedades as $propiedad) : ?>
                 <tr>
-                    <td><?php echo $propiedad['id']; ?></td>
-                    <td><?php echo $propiedad['titulo']; ?></td>
-                    <td><img src="/TarracoLuxe/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la casa en la playa" class="imagen-tabla"></td>
-                    <td><?php echo $propiedad['precio']; ?> €</td>
+                    <td><?php echo $propiedad->id; ?></td>
+                    <td><?php echo $propiedad->titulo; ?></td>
+                    <td><img src="/TarracoLuxe/imagenes/<?php echo $propiedad->imagen; ?>" alt="<?php echo $propiedad->titulo; ?>" class="imagen-tabla"></td>
+                    <td><?php echo $propiedad->precio; ?> €</td>
                     <td>
-                        <a href="propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
+                        <a href="propiedades/actualizar.php?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
                         <form method="post" class="w-100">
-                            <input type="hidden" name="id" value="<?php echo $propiedad['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
                             <input type="submit" value="Borrar" class="boton-rojo-block">
                         </form>
                     </td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </main>
