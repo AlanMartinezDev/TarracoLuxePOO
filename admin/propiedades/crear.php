@@ -2,6 +2,8 @@
 require '../../includes/app.php';
 
 use App\Propiedad;
+use Intervention\Image\ImageManager as Image;
+use Intervention\Image\Drivers\Gd\Driver;
 
 estaAutenticado();
 
@@ -25,33 +27,39 @@ $vendedorId = '';
 
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Crea una nueva instancia
     $propiedad = new Propiedad($_POST);
+
+    /* Subida de archivos */
+    // Generar nombre único para la imagen
+    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+    // Realiza un resize a la imagen con intervention
+    if ($_FILES['imagen']['tmp_name']) {
+        $manager = new Image(Driver::class);
+        $image = $manager->read($_FILES['imagen']['tmp_name'])->cover(800, 600);
+
+        // Setear la imagen
+        $propiedad->setImagen($nombreImagen);
+    }
+
+    // Validar
     $errores = $propiedad->validar();
 
     // Revisar que el array de errores esté vacío
     if (empty($errores)) {
-        $propiedad->guardar();
-
-        // Asignar files a una variable
-        $imagen = $_FILES['imagen'];
-
-        /* Subida de archivos */
-        // Crear carpeta
-        $carpetaImagenes = '../../imagenes/';
-
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes);
+        // Crear la carpeta para subir imagenes
+        if (!is_dir(CARPETA_IMAGENES)) {
+            mkdir(CARPETA_IMAGENES);
         }
 
-        // Generar nombre único para la imagen
-        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+        // Guarda la imagen en el servidor
+        $image->save(CARPETA_IMAGENES . $nombreImagen);
 
-        // Subir la imagen
-        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+        // Guarda en la base de datos
+        $resultado = $propiedad->guardar();
 
-        // Insertar en la base de datos
-        $resultado = mysqli_query($db, $query);
-
+        // Mensaje de exito
         if ($resultado) {
             // Redireccionar al usuario
             header('Location: /TarracoLuxe/admin?resultado=1');
