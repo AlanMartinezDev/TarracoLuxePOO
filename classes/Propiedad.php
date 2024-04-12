@@ -8,6 +8,9 @@ class Propiedad
     protected static $db;
     protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'plazas', 'creado', 'vendedorId'];
 
+    // Errores
+    protected static $errores = [];
+
     public $id;
     public $titulo;
     public $precio;
@@ -74,5 +77,59 @@ class Propiedad
         }
 
         return $sanitizado;
+    }
+
+    // Validación
+    public static function getErrores()
+    {
+        return self::$errores;
+    }
+
+    public function validar()
+    {
+        if (!$this->titulo) {
+            self::$errores[] = "Debes añadir un título";
+        }
+
+        if (strlen($this->titulo) > 45) {
+            self::$errores[] = "El título no debe superar los 45 caracteres";
+        }
+
+        if (!$this->precio) {
+            self::$errores[] = "Debes añadir un precio";
+        }
+        /*
+        if (!$this->imagen['name'] || $this->imagen['error']) {
+            self::$errores[] = "Debes añadir una imagen";
+        }
+
+        // Validar por tamaño (2mb máximo)
+        $medida = 1000 * 1000;
+
+        if ($this->imagen['size'] > $medida) {
+            self::$errores[] = "La imagen es demasiado grande";
+        }
+        */
+        if (strlen($this->descripcion) < 50) {
+            self::$errores[] = "Debes añadir una descripcion que tenga al menos 50 caracteres";
+        }
+
+        if (!$this->habitaciones) {
+            self::$errores[] = "Debes añadir al menos una habitación";
+        }
+
+        if (!$this->wc) {
+            self::$errores[] = "Debes añadir al menos un baño";
+        }
+
+        if (!$this->plazas) {
+            self::$errores[] = "Debes añadir al menos una plaza";
+        }
+
+        if (!$this->vendedorId) {
+            self::$errores[] = "Debes añadir un vendedor";
+        }
+
+        return self::$errores;
     }
 }
