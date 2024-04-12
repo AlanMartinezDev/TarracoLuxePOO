@@ -33,7 +33,7 @@ class Propiedad
         $this->id = $args["id"] ?? "";
         $this->titulo = $args["titulo"] ?? "";
         $this->precio = $args["precio"] ?? "";
-        $this->imagen = $args["imagen"] ?? "imagen.jpg";
+        $this->imagen = $args["imagen"] ?? "";
         $this->descripcion = $args["descripcion"] ?? "";
         $this->habitaciones = $args["habitaciones"] ?? "";
         $this->wc = $args["wc"] ?? "";
@@ -55,6 +55,8 @@ class Propiedad
         $query .= " ') ";
 
         $resultado = self::$db->query($query);
+
+        return $resultado;
     }
 
     public function atributos()
@@ -79,6 +81,15 @@ class Propiedad
         return $sanitizado;
     }
 
+    // Subida de archivos
+    public function setImagen($imagen)
+    {
+        // Asignar al atributo de imagen el nombre de la imagen
+        if ($imagen) {
+            $this->imagen = $imagen;
+        }
+    }
+
     // Validación
     public static function getErrores()
     {
@@ -98,18 +109,11 @@ class Propiedad
         if (!$this->precio) {
             self::$errores[] = "Debes añadir un precio";
         }
-        /*
-        if (!$this->imagen['name'] || $this->imagen['error']) {
+
+        if (!$this->imagen) {
             self::$errores[] = "Debes añadir una imagen";
         }
 
-        // Validar por tamaño (2mb máximo)
-        $medida = 1000 * 1000;
-
-        if ($this->imagen['size'] > $medida) {
-            self::$errores[] = "La imagen es demasiado grande";
-        }
-        */
         if (strlen($this->descripcion) < 50) {
             self::$errores[] = "Debes añadir una descripcion que tenga al menos 50 caracteres";
         }
