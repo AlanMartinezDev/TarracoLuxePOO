@@ -3,10 +3,6 @@ require '../../includes/app.php';
 
 use App\Propiedad;
 
-$propiedad = new Propiedad;
-
-debug($propiedad);
-
 estaAutenticado();
 
 $db = conectarDB();
@@ -29,6 +25,9 @@ $vendedorId = '';
 
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $propiedad = new Propiedad($_POST);
+    $propiedad->guardar();
+
     // Sanitizar con mysqli_real_escape_string
     $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
     $precio = mysqli_real_escape_string($db, $_POST['precio']);
@@ -103,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
 
         // Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, plazas, creado, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$plazas', '$creado', '$vendedorId')";
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
@@ -145,7 +143,7 @@ incluirTemplate('header');
         </fieldset>
         <fieldset>
             <legend>Vendedor</legend>
-            <select name="vendedor">
+            <select name="vendedorId">
                 <option disabled selected>-- Selecciona un vendedor --</option>
                 <?php while ($vendedor = mysqli_fetch_assoc($resultado)) : ?>
                     <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>
