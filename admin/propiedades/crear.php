@@ -28,17 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $propiedad = new Propiedad($_POST);
     $propiedad->guardar();
 
-    // Sanitizar con mysqli_real_escape_string
-    $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
-    $precio = mysqli_real_escape_string($db, $_POST['precio']);
-    $imagen = mysqli_real_escape_string($db, $_POST['imagen']);
-    $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-    $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
-    $wc = mysqli_real_escape_string($db, $_POST['wc']);
-    $plazas = mysqli_real_escape_string($db, $_POST['plazas']);
-    $creado = date('Y/m/d');
-    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
-
     // Asignar files a una variable
     $imagen = $_FILES['imagen'];
 
