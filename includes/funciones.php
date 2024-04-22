@@ -26,6 +26,8 @@ function debug($variable)
 }
 
 // Escapar / sanitizar el HTML
-function s()
+function s($html): string
 {
+    $s = htmlspecialchars($html);
+    return $s;
 }

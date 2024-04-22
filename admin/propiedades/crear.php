@@ -9,6 +9,8 @@ estaAutenticado();
 
 $db = conectarDB();
 
+$propiedad = new Propiedad();
+
 // Consultar para obtener los vendedores
 $consulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $consulta);
