@@ -1,9 +1,10 @@
 <?php
-require '../../includes/app.php';
 
 use App\Propiedad;
 use Intervention\Image\ImageManager as Image;
 use Intervention\Image\Drivers\Gd\Driver;
+
+require '../../includes/app.php';
 
 estaAutenticado();
 
