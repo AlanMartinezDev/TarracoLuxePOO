@@ -39,10 +39,21 @@ class Propiedad
         $this->wc = $args["wc"] ?? "";
         $this->plazas = $args["plazas"] ?? "";
         $this->creado = date('Y/m/d');
-        $this->vendedorId = $args["vendedorId"] ?? "";
+        $this->vendedorId = $args["vendedorId"] ?? "1";
     }
 
     public function guardar()
+    {
+        if (isset($this->id)) {
+            // Actualizar
+            $this->actualizar();
+        } else {
+            // Crear un nuevo registro
+            $this->crear();
+        }
+    }
+
+    public function crear()
     {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
@@ -56,7 +67,33 @@ class Propiedad
 
         $resultado = self::$db->query($query);
 
-        return $resultado;
+        if ($resultado) {
+            // Redireccionar al usuario
+            header('Location: /TarracoLuxe/admin?resultado=1');
+        }
+    }
+
+    public function actualizar()
+    {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributos();
+
+        $valores = [];
+        foreach ($atributos as $key => $value) {
+            $valores[] = "{$key}='{$value}'";
+        }
+
+        $query = "UPDATE propiedades SET ";
+        $query .= join(', ', $valores);
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 ";
+
+        $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            // Redireccionar al usuario
+            header('Location: /TarracoLuxe/admin?resultado=2');
+        }
     }
 
     public function atributos()
@@ -74,8 +111,8 @@ class Propiedad
         $atributos = $this->atributos();
         $sanitizado = [];
 
-        foreach ($atributos as $atributo => $valor) {
-            $sanitizado[$atributo] = self::$db->escape_string($valor);
+        foreach ($atributos as $key => $value) {
+            $sanitizado[$key] = self::$db->escape_string($value);
         }
 
         return $sanitizado;
@@ -85,7 +122,7 @@ class Propiedad
     public function setImagen($imagen)
     {
         // Elimina la imagen previa
-        if ($this->id) {
+        if (isset($this->id)) {
             // Comprobar si existe el archivo
             $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
             if ($existeArchivo) {
