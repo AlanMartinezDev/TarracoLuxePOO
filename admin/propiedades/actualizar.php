@@ -1,12 +1,12 @@
 <?php
 
 use App\Propiedad;
+use Intervention\Image\ImageManager as Image;
+use Intervention\Image\Drivers\Gd\Driver;
 
 require '../../includes/app.php';
 
 estaAutenticado();
-
-$db = conectarDB();
 
 // Validar por ID válido
 $id = $_GET['id'];
@@ -33,43 +33,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $propiedad->sincronizar($args);
 
+    // Validación
     $errores = $propiedad->validar();
 
-    // Revisar que el array de errores esté vacío
+    // Subida de archivos
+    // Generar nombre único para la imagen
+    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+    if ($_FILES['propiedad']['tmp_name']['imagen']) {
+        $manager = new Image(Driver::class);
+        $image = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
+
+        // Setear la imagen
+        $propiedad->setImagen($nombreImagen);
+    }
+
     if (empty($errores)) {
-        /* Subida de archivos */
-        // Crear carpeta
-        $carpetaImagenes = '../../imagenes/';
-
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes);
+        // Almacenar la imagen
+        if ($_FILES['propiedad']['tmp_name']['imagen']) {
+            $image->save(CARPETA_IMAGENES . $nombreImagen);
         }
 
-        $nombreImagen = '';
-
-        // Comprobar si ya existe una imagen para eliminarla
-        if ($imagen['name']) {
-            // Eliminar imagen si ya existe
-            unlink($carpetaImagenes . $propiedad['imagen']);
-
-            // Generar nombre único para la imagen
-            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-
-            // Subir la imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-        } else {
-            // En caso de no actualizar la imagen
-            $nombreImagen = $propiedad['imagen'];
-        }
-
-        // Insertar en la base de datos
-        $query = "UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, plazas = {$plazas}, vendedorId = {$vendedorId} WHERE id = {$id}";
-        $resultado = mysqli_query($db, $query);
-
-        if ($resultado) {
-            // Redireccionar al usuario
-            header('Location: /TarracoLuxe/admin?resultado=2');
-        }
+        // Guarda en la base de datos
+        $propiedad->guardar();
     }
 }
 
