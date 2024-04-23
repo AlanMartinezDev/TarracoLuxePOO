@@ -37,6 +37,7 @@ $auth = $_SESSION['login'] ?? false;
                             <a href="/TarracoLuxe/login.php">Iniciar sesión</a>
                         <?php endif; ?>
                         <?php if ($auth) : ?>
+                            <a href="/TarracoLuxe/admin/">Admin</a>
                             <a href="/TarracoLuxe/logout.php">Cerrar sesión</a>
                         <?php endif; ?>
                     </nav>
