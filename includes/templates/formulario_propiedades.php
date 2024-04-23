@@ -6,6 +6,9 @@
     <input type="number" id="precio" name="precio" value="<?php echo s($propiedad->precio); ?>" placeholder="Precio de la propiedad">
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" name="imagen" value="<?php echo $propiedad->imagen; ?>" accept="image/jpeg, image/png">
+    <?php if ($propiedad->imagen) { ?>
+        <img src="/TarracoLuxe/imagenes/<?php echo $propiedad->imagen ?>" class="imagen-small">
+    <?php } ?>
     <label for="descripcion">Descripción</label>
     <textarea id="descripcion" name="descripcion"><?php echo s($propiedad->descripcion); ?></textarea>
 </fieldset>
