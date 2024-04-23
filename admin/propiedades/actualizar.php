@@ -28,16 +28,10 @@ $errores = [];
 
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sanitizar con mysqli_real_escape_string
-    $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
-    $precio = mysqli_real_escape_string($db, $_POST['precio']);
-    $imagen = mysqli_real_escape_string($db, $_POST['imagen']);
-    $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-    $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
-    $wc = mysqli_real_escape_string($db, $_POST['wc']);
-    $plazas = mysqli_real_escape_string($db, $_POST['plazas']);
-    $creado = date('Y/m/d');
-    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
+    // Asignar los atributos
+    $args = $_POST['propiedad'];
+
+    $propiedad->sincronizar($args);
 
     // Asignar files a una variable
     $imagen = $_FILES['imagen'];
