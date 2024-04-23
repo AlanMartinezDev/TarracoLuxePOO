@@ -8,8 +8,6 @@ require '../../includes/app.php';
 
 estaAutenticado();
 
-$db = conectarDB();
-
 $propiedad = new Propiedad();
 
 // Consultar para obtener los vendedores
@@ -51,13 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image->save(CARPETA_IMAGENES . $nombreImagen);
 
         // Guarda en la base de datos
-        $resultado = $propiedad->guardar();
-
-        // Mensaje de exito
-        if ($resultado) {
-            // Redireccionar al usuario
-            header('Location: /TarracoLuxe/admin?resultado=1');
-        }
+        $propiedad->guardar();
     }
 }
 
