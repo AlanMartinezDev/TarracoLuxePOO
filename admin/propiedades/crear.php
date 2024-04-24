@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManager as Image;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -8,7 +9,9 @@ require '../../includes/app.php';
 
 estaAutenticado();
 
-$propiedad = new Propiedad();
+$propiedad = Propiedad();
+$vendedores = Vendedor::all();
+debug($vendedores);
 
 // Consultar para obtener los vendedores
 $consulta = "SELECT * FROM vendedores";
