@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManager as Image;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -18,6 +19,9 @@ if (!$id) {
 
 // Obtener los datos de la propiedad
 $propiedad = Propiedad::find($id);
+
+// Consulta para obtener todos los vendedores
+$vendedores = Vendedor::all();
 
 // Consultar para obtener los vendedores
 $consulta = "SELECT * FROM vendedores";
