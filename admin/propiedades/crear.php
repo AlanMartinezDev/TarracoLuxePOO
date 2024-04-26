@@ -9,13 +9,10 @@ require '../../includes/app.php';
 
 estaAutenticado();
 
-$propiedad = Propiedad();
-$vendedores = Vendedor::all();
-debug($vendedores);
+$propiedad = new Propiedad();
 
-// Consultar para obtener los vendedores
-$consulta = "SELECT * FROM vendedores";
-$resultado = mysqli_query($db, $consulta);
+// Consulta para obtener todos los vendedores
+$vendedores = Vendedor::all();
 
 // Array con mensajes de errores
 $errores = Propiedad::getErrores();
