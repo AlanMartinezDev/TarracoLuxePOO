@@ -21,7 +21,7 @@ $auth = $_SESSION['login'] ?? false;
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="/TarracoLuxe/index.php">
-                    <img src="/TarracoLuxe/build/img/logo.svg" alt="Logotipo de TarracoLuxe" />
+                    <img src="/TarracoLuxe/build/img/logo.png" alt="Logotipo de TarracoLuxe" />
                 </a>
                 <div class="mobile-menu">
                     <img src="/TarracoLuxe/build/img/barras.svg" alt="Icono menú responsive" />
