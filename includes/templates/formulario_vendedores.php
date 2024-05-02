@@ -8,5 +8,5 @@
 <fieldset>
     <legend>Información extra</legend>
     <label for="telefono">Teléfono:</label>
-    <input type="number" id="telefono" name="vendedor[telefono]" value="<?php echo s($vendedor->telefono); ?>" placeholder="Teléfono del vendedor">
+    <input type="tel" id="telefono" name="vendedor[telefono]" value="<?php echo s($vendedor->telefono); ?>" placeholder="Teléfono del vendedor">
 </fieldset>
