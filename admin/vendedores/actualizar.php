@@ -6,13 +6,34 @@ require '../../includes/app.php';
 
 estaAutenticado();
 
-// Consulta para obtener todos los vendedores
-$vendedor = new Vendedor;
+// Validar que sea un ID válido
+$id = $_GET['id'];
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if (!$id) {
+    header('Location: /TarracoLuxe/admin');
+}
+
+// Obtener el arreglo del vendedor
+$vendedor = Vendedor::find($id);
 
 // Array con mensajes de errores
 $errores = Vendedor::getErrores();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Asignar los valores
+    $args = $_POST['vendedor'];
+
+    // Sincronizar el objeto en memoria
+    $vendedor->sincronizar($args);
+
+    // Validación
+    $errores = $vendedor->validar();
+
+    // Guarda en la base de datos
+    if (empty($errores)) {
+        $vendedor->guardar();
+    }
 }
 
 incluirTemplate('header');
