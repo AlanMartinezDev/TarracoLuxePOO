@@ -39,13 +39,13 @@ incluirTemplate('header');
 <main class="contenedor seccion">
     <h1>Administrador de TarracoLuxe</h1>
     <?php if (intval($resultado) === 1) : ?>
-        <p class="alerta exito">Propiedad creada correctamente</p>
+        <p class="alerta exito">Creado correctamente</p>
     <?php endif; ?>
     <?php if (intval($resultado) === 2) : ?>
-        <p class="alerta exito">Propiedad actualizada correctamente</p>
+        <p class="alerta exito">Actualizado correctamente</p>
     <?php endif; ?>
     <?php if (intval($resultado) === 3) : ?>
-        <p class="alerta exito">Propiedad eliminada correctamente</p>
+        <p class="alerta exito">Eliminado correctamente</p>
     <?php endif; ?>
     <a href="/TarracoLuxe/admin/propiedades/crear.php" class="boton boton-verde">Nueva propiedad</a>
     <a href="/TarracoLuxe/admin/vendedores/crear.php" class="boton boton-amarillo">Nuevo vendedor</a>
