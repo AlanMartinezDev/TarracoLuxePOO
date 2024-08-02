@@ -87,7 +87,7 @@ CREATE TABLE `vendedores` (
 
 INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
 (1, 'Alan', 'Martínez', '644305921'),
-(2, 'Alexandra', 'Gomes', '653531839');
+(2, 'Montse', 'Mendiola', '635187088');
 
 --
 -- Índices para tablas volcadas
